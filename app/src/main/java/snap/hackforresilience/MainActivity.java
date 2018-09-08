@@ -3,17 +3,24 @@ package snap.hackforresilience;
 import android.Manifest;
 import android.app.ActionBar;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.util.Log;
 import android.widget.Toast;
 import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.common.OnEngineInitListener;
+import com.here.android.mpa.common.PositioningManager;
 import com.here.android.mpa.mapping.MapFragment;
 import com.here.android.mpa.mapping.Map;
+import com.here.android.mpa.mapping.MapMarker;
+import com.here.android.mpa.mapping.PositionIndicator;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,17 +29,17 @@ public class MainActivity extends AppCompatActivity {
     private Map map = null;
     private MapFragment mapFragment = null;
     private final static int REQUEST_CODE_ASK_PERMISSIONS = 1;
+    private PositioningManager pm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkPermissions();
-        initialize();
+
     }
 
     private void initialize() {
         setContentView(R.layout.activity_main);
-
         View decorView = getWindow().getDecorView();
 // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -44,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 public void onEngineInitializationCompleted(OnEngineInitListener.Error error) {
                     if (error == OnEngineInitListener.Error.NONE) {
                         map = mapFragment.getMap();
-                        map.setCenter(new GeoCoordinate(49.196261, -123.004773, 0.0),
+                       addVictimMarker(12.971604,79.165172);
+                       addVolunteerMarker(12.968864,79.161095);
+                       addDroneMarker(12.964264,79.154938);
+
+                                map.setCenter(new GeoCoordinate(12.971604, 79.165172, 0.0),
                                 Map.Animation.NONE);
                         map.setZoomLevel((map.getMaxZoomLevel() + map.getMinZoomLevel()) / 2);
                     } else {
@@ -53,8 +64,49 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+
     }
 
+    public void addVictimMarker(double lo, double ll){
+        com.here.android.mpa.common.Image myImage =
+                new com.here.android.mpa.common.Image();
+        try {
+            String uri = "@drawable/victim";
+            int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+            myImage.setImageResource(imageResource);
+        } catch (IOException e) {
+
+        }
+        MapMarker myMapMarker =
+                new MapMarker(new GeoCoordinate(lo,ll), myImage);
+        map.addMapObject(myMapMarker);
+    }
+
+    public void addVolunteerMarker(double lo, double ll){
+        com.here.android.mpa.common.Image myImage =
+                new com.here.android.mpa.common.Image();
+        try {
+            String uri = "@drawable/volunteer";
+            int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+            myImage.setImageResource(imageResource);
+        } catch (IOException e) {
+
+        }
+        MapMarker myMapMarker =
+                new MapMarker(new GeoCoordinate(lo,ll), myImage);
+        map.addMapObject(myMapMarker);
+    }
+    public void addDroneMarker(double lo, double ll){
+        com.here.android.mpa.common.Image myImage =
+                new com.here.android.mpa.common.Image();
+        try {
+            String uri = "@drawable/drone";
+            int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+            myImage.setImageResource(imageResource);
+        } catch (IOException e) {
+
+        }
+    }
     protected void checkPermissions() {
         final List<String> missingPermissions = new ArrayList<String>();
         for (final String permission : REQUIRED_SDK_PERMISSIONS) {
@@ -88,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
                 }
+                initialize();
                 break;
         }
     }
