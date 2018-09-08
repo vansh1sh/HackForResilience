@@ -1,12 +1,14 @@
 package snap.hackforresilience;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.common.OnEngineInitListener;
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialize() {
         setContentView(R.layout.activity_main);
+
+        View decorView = getWindow().getDecorView();
+// Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.mapfragment);
             mapFragment.init(new OnEngineInitListener() {
