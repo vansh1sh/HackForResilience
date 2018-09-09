@@ -2,6 +2,7 @@ package snap.hackforresilience;
 
 import android.Manifest;
 import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -14,9 +15,14 @@ import android.view.View;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.google.android.gms.vision.text.Line;
 import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.common.OnEngineInitListener;
 import com.here.android.mpa.common.PositioningManager;
@@ -35,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private MapFragment mapFragment = null;
     private final static int REQUEST_CODE_ASK_PERMISSIONS = 1;
     private PositioningManager pm;
+    LinearLayout comm,assi;
 
     ImageView chat, visib1,visib2;
  int x=0;
@@ -49,11 +56,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         View decorView = getWindow().getDecorView();
         chat = (ImageView) findViewById(R.id.chat);
+        ImageView settings = (ImageView) findViewById(R.id.settings);
         visib1 = (ImageView) findViewById(R.id.visibility1);
         visib2 = (ImageView) findViewById(R.id.visibility2);
         final CardView card = (CardView) findViewById(R.id.card);
         final CardView card2 = (CardView) findViewById(R.id.card2);
         RelativeLayout rel =  (RelativeLayout) findViewById(R.id.visi);
+
+
 
 
         rel.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +90,71 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                final Dialog dialog = new Dialog(MainActivity.this);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setContentView(R.layout.chat_dialog);
+                dialog.show();
+
+
+                assi = (LinearLayout) dialog.findViewById(R.id.GoogleAssisstChat);
+                comm = (LinearLayout) dialog.findViewById(R.id.CommunityChat);
+
+                comm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+                    }
+
+
+                });
+                assi.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+                    }
+
+
+                });
             }
-        });
+       });
+       settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Dialog dialog = new Dialog(MainActivity.this);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setContentView(R.layout.becomevol);
+                dialog.show();
+
+
+                Button yes = (Button) dialog.findViewById(R.id.yesbtn);
+                Button no = (Button) dialog.findViewById(R.id.nobtn);
+
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+                    }
+
+
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    dialog.dismiss();
+                    }
+
+
+                });
+            }
+       });
+
+
+
 
 // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -130,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         com.here.android.mpa.common.Image myImage =
                 new com.here.android.mpa.common.Image();
         try {
-            String uri = "@drawable/volunteer";
+            String uri = "@drawable/voladd";
             int imageResource = getResources().getIdentifier(uri, null, getPackageName());
             myImage.setImageResource(imageResource);
         } catch (IOException e) {

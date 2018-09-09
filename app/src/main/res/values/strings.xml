@@ -3,4 +3,6 @@
     <string name="vol"> <b> V</b>olunteer</string>
     <string name="vic"> <b> V</b>ictim</string>
     <string name="dro"> <b> D</b>rone</string>
+    <string name="commchat">Chat with the <b>Community</b></string>
+    <string name="assiss">Talk to <b>Google Assisstant</b></string>
 </resources>

@@ -29,5 +29,7 @@ dependencies {
     implementation project(':HERE-sdk')
     implementation 'com.android.support:design:27.1.1'
     implementation 'org.locationtech.jts:jts-core:1.15.0'
+
+    implementation 'com.google.android.gms:play-services:10.0.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
 }
