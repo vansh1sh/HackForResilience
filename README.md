@@ -1,7 +1,7 @@
 # Spotted
 #Hack-For-Resilience
 
-##PennApps XVIII
+#PennApps XVIII
 
 Spotted sends help to those in need during natural disaster by providing their accurate location to the appropriate Rescue Teams.
 
@@ -14,7 +14,7 @@ Screenshots:
 
 <img src="../master/Screenshots/1.jpg" width="250.31" height="462.98" /> .  <img src="/../master/Screenshots/2.jpg" width="250.31" height="462.98" />
 
-<img src="../master/Screenshots/3.jpg" width="250.31" height="462.98" /> .  <img src="/../master/Screenshots/4" width="250.31" height="462.98" />
+<img src="../master/Screenshots/3.jpg" width="250.31" height="462.98" /> .  <img src="/../master/Screenshots/4.jpg" width="250.31" height="462.98" />
 
 Currently This Version includes:
 - HERE Maps API
