@@ -36,21 +36,52 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import snap.hackforresilience.rest.ApiClient;
+import snap.hackforresilience.rest.ApiInterface;
+
 public class MainActivity extends AppCompatActivity {
     private Map map = null;
     private MapFragment mapFragment = null;
     private final static int REQUEST_CODE_ASK_PERMISSIONS = 1;
     private PositioningManager pm;
     LinearLayout comm,assi;
-
+    String count;
     ImageView chat, visib1,visib2;
- int x=0;
+    int x=0;
+    ArrayList<Double> longitude;
+    ArrayList<Double> lat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkPermissions();
-
+        customTest();
+        request();
     }
+
+    public void request(){
+        final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
+        final Call<Count> loginVerifyCall = apiInterface.getCounter();
+
+        loginVerifyCall.enqueue(new Callback<Count>() {
+            @Override
+            public void onResponse(Call<Count> call, Response<Count> response) {
+                 count= response.body().getCount();
+                int foo = Integer.parseInt(count);
+                for (int i=0;i<foo;i++){
+                    addVictimMarker(longitude.get(i),lat.get(i));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Count> call, Throwable t) {
+
+            }
+        });
+}
 
     private void initialize() {
         setContentView(R.layout.activity_main);
@@ -263,6 +294,34 @@ public class MainActivity extends AppCompatActivity {
                 initialize();
                 break;
         }
+    }
+
+    public void customTest(){
+        longitude.add(0,39.9524966);
+        longitude.add(1,39.9523778);
+        longitude.add(2,39.9526468);
+        longitude.add(3,39.9523568);
+        longitude.add(4,39.9522348);
+        longitude.add(5,39.9527648);
+        longitude.add(6,39.9523764);
+        longitude.add(7,39.9524247);
+        longitude.add(8,39.9523752);
+        longitude.add(9,39.9523246);
+        longitude.add(10,39.952758);
+
+        lat.add(0,-75.1905943);
+        lat.add(1,-75.1903762);
+        lat.add(2,-75.1903242);
+        lat.add(3,-75.1903432);
+        lat.add(4,-75.1903243);
+        lat.add(5,-75.1903654);
+        lat.add(6,-75.1903267);
+        lat.add(7,-75.1903769);
+        lat.add(8,-75.1903346);
+        lat.add(9,-75.1903086);
+        lat.add(10,-75.1903977);
+
+
     }
 
     private static final String[] REQUIRED_SDK_PERMISSIONS = new String[] {
