@@ -9,8 +9,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.common.OnEngineInitListener;
@@ -31,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private final static int REQUEST_CODE_ASK_PERMISSIONS = 1;
     private PositioningManager pm;
 
+    ImageView chat, visib1,visib2;
+ int x=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +48,45 @@ public class MainActivity extends AppCompatActivity {
     private void initialize() {
         setContentView(R.layout.activity_main);
         View decorView = getWindow().getDecorView();
+        chat = (ImageView) findViewById(R.id.chat);
+        visib1 = (ImageView) findViewById(R.id.visibility1);
+        visib2 = (ImageView) findViewById(R.id.visibility2);
+        final CardView card = (CardView) findViewById(R.id.card);
+        final CardView card2 = (CardView) findViewById(R.id.card2);
+        RelativeLayout rel =  (RelativeLayout) findViewById(R.id.visi);
+
+
+        rel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(x%2==0)
+                {
+                    visib1.setVisibility(View.GONE);
+                    visib2.setVisibility(View.VISIBLE);
+                    x++;
+                    card.setVisibility(View.GONE);
+
+                }
+                else
+                {  visib2.setVisibility(View.GONE);
+                visib1.setVisibility(View.VISIBLE);
+                    card.setVisibility(View.VISIBLE);
+                x++;}
+
+            }
+        });
+
+       chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
 // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
+
 
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.mapfragment);
             mapFragment.init(new OnEngineInitListener() {

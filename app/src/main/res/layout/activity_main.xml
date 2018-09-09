@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-    android:background="@color/colorPrimary" >
-
-
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="1100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary">
 
 
 <fragment
@@ -17,37 +14,205 @@ android:layout_height="fill_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
 
-    <LinearLayout
-        android:layout_width="100dp"
+    <android.support.v7.widget.CardView
+
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
         android:layout_marginLeft="30dp"
-        android:background="@color/colorPrimary"
+        app:elevation="16dp"
+
+        android:id="@+id/card"
+        app:cardCornerRadius="5dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/volunteer"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:textSize="16dp"
-            android:text="VOLUNTEER"
-            android:textColor="#ffffff"
+            android:text="@string/vol"
+            android:gravity="center"
             android:layout_margin="2dp"/>
 
-        <TextView
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/gradient"/>
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:text="VICTIMS"
-            android:layout_margin="2dp"
-            android:textColor="#ffffff"/>
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/victim"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textSize="16dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/vic"
+                android:gravity="center"
+                android:layout_margin="2dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/gradient"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/drone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textSize="16dp"
+                android:text="@string/dro"
+                android:gravity="center"
+                android:layout_margin="2dp"/>
+        </LinearLayout>
     </LinearLayout>
+    </android.support.v7.widget.CardView>
+
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#70d4cfcf"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_margin="1dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/victim"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:textColor="#686868"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:layout_weight="3.5"
+                android:text="Tide App"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:layout_margin="7dp"
+
+            android:src="@drawable/ic_settings_black_24dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@drawable/gradient"
-        android:orientation="vertical"/>
+        app:elevation="20dp"
+        android:layout_marginTop="740dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+        android:id="@+id/card2"
+        app:cardCornerRadius="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3"
+
+            android:layout_margin="7dp"
+            android:orientation="horizontal">
+
+         <RelativeLayout
+             android:layout_width="0dp"
+             android:layout_margin="1dp"
+             android:layout_weight="1.4"
+             android:layout_height="30dp"
+
+             android:id="@+id/visi"
+             >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/visibility1"
+                android:src="@drawable/ic_visibility_off_black_24dp"/>
+             <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/visibility2"
+                android:src="@drawable/ic_visibility_black_24dp"/>
+         </RelativeLayout>
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_margin="1dp"
+                android:layout_weight="0.2"
+
+                android:layout_height="30dp">
+            <LinearLayout
+
+                android:layout_width="1dp"
+                android:layout_marginTop="1.5dp"
+
+                android:background="#686868"
+                android:layout_height="match_parent"/>
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_margin="1dp"
+
+                android:id="@+id/chat"
+                android:layout_weight="1.4"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_textsms_black_24dp"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
 </RelativeLayout>
