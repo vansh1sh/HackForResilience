@@ -29,6 +29,10 @@
         </activity>
         <meta-data android:name="com.here.android.maps.appid" android:value="BxurQC0Zov2QWIT33OTp"/>
         <meta-data android:name="com.here.android.maps.apptoken" android:value="7Dyax9LKOAL8hUnWS-SMwQ"/>
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="snap.hackforresilience.MainActivity" />
+        <activity android:name=".ChatActivity"/>
     </application>
 
 </manifest>
