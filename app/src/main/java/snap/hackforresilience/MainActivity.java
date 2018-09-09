@@ -94,13 +94,14 @@ public class MainActivity extends AppCompatActivity {
                 public void onEngineInitializationCompleted(OnEngineInitListener.Error error) {
                     if (error == OnEngineInitListener.Error.NONE) {
                         map = mapFragment.getMap();
-                       addVictimMarker(12.971604,79.165172);
-                       addVolunteerMarker(12.968864,79.161095);
-                       addDroneMarker(12.964264,79.154938);
+                       addVictimMarker(39.9524966,-75.1905943);
+                       addVictimMarker(39.9523778,-75.1903640);
+                       addDroneMarker(39.9521136,-75.1906577);
+                       //addDroneMarker(12.964264,79.154938);
 
-                                map.setCenter(new GeoCoordinate(12.971604, 79.165172, 0.0),
+                                map.setCenter(new GeoCoordinate(39.9524966, -75.1905943, 0.0),
                                 Map.Animation.NONE);
-                        map.setZoomLevel((map.getMaxZoomLevel() + map.getMinZoomLevel()) / 2);
+                        map.setZoomLevel((2*map.getMaxZoomLevel() + map.getMinZoomLevel()) );
                     } else {
                         System.out.println("ERROR: Cannot initialize Map Fragment");
                     }
@@ -149,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
 
         }
+        MapMarker myMapMarker =
+                new MapMarker(new GeoCoordinate(lo,ll), myImage);
+        map.addMapObject(myMapMarker);
     }
     protected void checkPermissions() {
         final List<String> missingPermissions = new ArrayList<String>();
