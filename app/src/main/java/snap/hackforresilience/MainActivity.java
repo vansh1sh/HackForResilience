@@ -3,6 +3,7 @@ package snap.hackforresilience;
 import android.Manifest;
 import android.app.ActionBar;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.text.Line;
@@ -32,8 +34,10 @@ import com.here.android.mpa.mapping.MapMarker;
 import com.here.android.mpa.mapping.PositionIndicator;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         View decorView = getWindow().getDecorView();
         chat = (ImageView) findViewById(R.id.chat);
         ImageView settings = (ImageView) findViewById(R.id.settings);
+        ImageView emergency = (ImageView) findViewById(R.id.emergency);
         visib1 = (ImageView) findViewById(R.id.visibility1);
         visib2 = (ImageView) findViewById(R.id.visibility2);
         final CardView card = (CardView) findViewById(R.id.card);
@@ -133,7 +138,9 @@ public class MainActivity extends AppCompatActivity {
                 comm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        dialog.dismiss();
+                        Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                        startActivity(intent);
 
                     }
 
@@ -150,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
        });
+
+
        settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,17 +171,42 @@ public class MainActivity extends AppCompatActivity {
 
                 Button yes = (Button) dialog.findViewById(R.id.yesbtn);
                 Button no = (Button) dialog.findViewById(R.id.nobtn);
+                final TextView msg = (TextView) dialog.findViewById(R.id.addedvol);
+
+                msg.setVisibility(View.GONE);
 
                 yes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        msg.setVisibility(View.VISIBLE);
 
                     }
 
 
                 });
                 no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    dialog.dismiss();
+                    }
+
+
+                });
+            }
+       });
+       emergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Dialog dialog = new Dialog(MainActivity.this);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setContentView(R.layout.emergency);
+                dialog.show();
+
+                Button exit = (Button) dialog.findViewById(R.id.exitbtn);
+
+              exit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
@@ -199,8 +233,12 @@ public class MainActivity extends AppCompatActivity {
                     if (error == OnEngineInitListener.Error.NONE) {
                         map = mapFragment.getMap();
                        addVictimMarker(39.9524966,-75.1905943);
-                       addVictimMarker(39.9523778,-75.1903640);
-                       addDroneMarker(39.9521136,-75.1906577);
+                       addVictimMarker(39.9523773,-75.1903640);
+                       addVictimMarker(39.952373,-75.1903640);
+                       addVictimMarker(39.9523721,-75.1903601);
+                       addVictimMarker(39.9523677,-75.1903240);
+                       addVictimMarker(39.9523778,-75.1901640);
+                       addDroneMarker(39.9521136,-75.1906977);
                        //addDroneMarker(12.964264,79.154938);
 
                                 map.setCenter(new GeoCoordinate(39.9524966, -75.1905943, 0.0),
